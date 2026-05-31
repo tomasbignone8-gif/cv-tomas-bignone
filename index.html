@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomás Bignone — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080809;
+  --bg2: #0f0f11;
+  --accent: #d4ff00;
+  --text: #f0ede6;
+  --muted: #4a4a52;
+  --border: #1c1c20;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(212, 255, 0, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.12s ease, width 0.3s, height 0.3s;
+  transform: translate(-50%, -50%);
+}
+.cursor-expand .cursor-ring {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(212, 255, 0, 0.6);
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.4rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,8,9,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.print-btn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.4rem;
+  cursor: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s, transform 0.2s;
+}
+.print-btn:hover { background: #fff; transform: scale(1.03); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,255,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,255,0,0.025) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+.hero-glow {
+  position: absolute;
+  top: -300px; right: -300px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(212,255,0,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute;
+  bottom: -200px; left: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(100,80,255,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.45rem 1.1rem;
+  margin-bottom: 2.2rem;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--bg);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+.hero-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(4.5rem, 11vw, 10.5rem);
+  line-height: 0.88;
+  margin-bottom: 1.8rem;
+  animation: fadeUp 0.7s 0.15s ease both;
+}
+.hero-name span {
+  display: block;
+  color: var(--accent);
+  -webkit-text-stroke: 0px;
+}
+.hero-name .outline {
+  -webkit-text-stroke: 2px rgba(212,255,0,0.4);
+  color: transparent;
+}
+.hero-role {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: #7a7a88;
+  max-width: 520px;
+  margin-bottom: 3.5rem;
+  animation: fadeUp 0.7s 0.3s ease both;
+  line-height: 1.7;
+}
+.hero-role strong { color: var(--text); font-weight: 600; }
+.hero-meta {
+  display: flex;
+  gap: 3rem;
+  animation: fadeUp 0.7s 0.45s ease both;
+}
+.hero-meta-item { display: flex; flex-direction: column; }
+.hero-meta-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.hero-meta-value { font-size: 0.88rem; font-weight: 500; }
+
+.hero-number {
+  position: absolute;
+  right: 4rem;
+  bottom: 4rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 18rem;
+  font-weight: 800;
+  color: rgba(212,255,0,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  animation: fadeUp 0.7s 0.6s ease both;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  animation: fadeUp 0.7s 0.75s ease both;
+}
+.scroll-line {
+  width: 50px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--muted));
+}
+
+/* SECTION SHARED */
+section {
+  padding: 7rem 4rem;
+  border-top: 1px solid var(--border);
+}
+.s-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 4.5rem;
+}
+.s-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+}
+.s-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.s-line { flex: 1; height: 1px; background: var(--border); }
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.about-text {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 2;
+  color: #8a8a95;
+}
+.about-text strong { color: var(--text); font-weight: 500; }
+.about-text em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.stat-card {
+  padding: 1.6rem 1.8rem;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+  background: var(--bg2);
+}
+.stat-card::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.stat-card:hover {
+  border-color: rgba(212,255,0,0.3);
+  transform: translateX(6px);
+}
+.stat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; }
+.tl-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  padding: 2.8rem 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.tl-item:last-child { border-bottom: none; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 219px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.tl-left { padding-top: 0.25rem; }
+.tl-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.6rem;
+}
+.badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid;
+}
+.badge-on  { color: var(--accent); border-color: var(--accent); }
+.badge-off { color: var(--muted);  border-color: var(--muted); }
+
+.tl-right h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.tl-company {
+  font-size: 0.88rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.1rem;
+}
+.tl-desc {
+  font-size: 0.95rem;
+  color: #7a7a88;
+  line-height: 1.8;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+.tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+  color: #666;
+  background: var(--bg2);
+  transition: all 0.25s;
+}
+.tag:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+/* SKILLS */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.2rem 5rem;
+}
+.sk {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.sk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sk-name { font-size: 0.88rem; font-weight: 600; }
+.sk-pct {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.sk-track {
+  height: 2px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.sk-fill {
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), rgba(212,255,0,0.5));
+  width: 0;
+  transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* SOFT SKILLS */
+.soft-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: 3.5rem;
+}
+.soft-item {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  text-align: center;
+  background: var(--bg2);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.soft-item:hover {
+  border-color: rgba(212,255,0,0.2);
+  transform: translateY(-4px);
+}
+.soft-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+.soft-name { font-size: 0.8rem; font-weight: 600; color: #aaa; letter-spacing: 0.04em; }
+
+/* LANGUAGES */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.lang-item {
+  padding: 2.2rem 1.8rem;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.lang-item:hover {
+  border-color: rgba(212,255,0,0.25);
+  transform: translateY(-4px);
+}
+.lang-item::after {
+  content: '';
+  position: absolute;
+  right: -30px; bottom: -30px;
+  width: 80px; height: 80px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.lang-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+.lang-lvl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.lang-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+
+/* CONTACT */
+.contact-section {
+  padding: 8rem 4rem;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.contact-bg-text {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Syne', sans-serif;
+  font-size: 14rem;
+  font-weight: 800;
+  color: rgba(212,255,0,0.03);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.contact-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+.contact-headline span { color: var(--accent); }
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+  position: relative;
+}
+.c-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: color 0.3s;
+}
+.c-link:hover { color: var(--accent); }
+.c-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.c-value { font-size: 1rem; font-weight: 500; }
+.copyright {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  position: relative;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* PRINT STYLES */
+@media print {
+  .cursor, .cursor-ring, nav, .print-btn, .scroll-hint, .hero-number { display: none !important; }
+  body { cursor: default; background: white; color: black; }
+  :root { --bg: #fff; --bg2: #fafafa; --text: #111; --muted: #666; --border: #ddd; --accent: #5a7a00; }
+  section, .contact-section { page-break-inside: avoid; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .tl-item { grid-template-columns: 1fr; gap: 0.8rem; }
+  .tl-item::before { display: none; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .soft-grid { grid-template-columns: repeat(2, 1fr); }
+  .lang-grid { grid-template-columns: 1fr 1fr; }
+  .hero-number { display: none; }
+  .contact-section { padding: 5rem 1.5rem; }
+  .contact-bg-text { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">TB.</div>
+  <ul class="nav-links">
+    <li><a href="#perfil">Perfil</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#educacion">Educación</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="cv-tomas-bignone.pdf" download="CV-Tomas-Bignone.pdf" class="print-btn">↓ Descargar PDF</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="border:none; padding-top: 0;">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Disponible &nbsp;·&nbsp; Capital Federal, CABA</div>
+    <h1 class="hero-name">
+      TOMÁS
+      <span>BIGNONE</span>
+    </h1>
+    <p class="hero-role">
+      <strong>Asistente Administrativo</strong> — Perfil orientado a la organización,<br>
+      con formación activa en <strong>gestión y análisis de datos</strong>.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Email</span>
+        <span class="hero-meta-value">tomasbignone8@gmail.com</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Ubicación</span>
+        <span class="hero-meta-value">Capital Federal</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Estado</span>
+        <span class="hero-meta-value">Activo · En formación</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-number">TB</div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- PERFIL -->
+<section id="perfil">
+  <div class="s-header reveal">
+    <span class="s-num">01</span>
+    <h2 class="s-title">Perfil</h2>
+    <div class="s-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      Soy una persona <strong>proactiva, comprometida y con fuerte disposición al aprendizaje</strong>.
+      Actualmente me encuentro estudiando la Tecnicatura en Gestión y Análisis de Datos
+      mientras curso en Coderhouse, lo que me aporta una mirada <em>analítica y ordenada</em>
+      sobre la información y los procesos.<br><br>
+
+      Mi experiencia en producción de eventos me enseñó a
+      <strong>trabajar bajo presión, coordinar múltiples tareas simultáneas y adaptarme
+      rápidamente</strong> a entornos cambiantes. Busco incorporarme a un equipo donde
+      pueda <strong>contribuir desde el área administrativa</strong>, aprender cómo se organiza
+      una empresa por dentro y seguir creciendo profesionalmente.
+    </div>
+    <div class="cards">
+      <div class="stat-card reveal">
+        <div class="stat-val">+1 año</div>
+        <div class="stat-lbl">Experiencia en producción y logística de eventos en vivo</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-val">2 formaciones</div>
+        <div class="stat-lbl">Tecnicatura + Coderhouse en análisis de datos activas simultáneamente</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-val">100%</div>
+        <div class="stat-lbl">Disponibilidad y ganas de aprender el funcionamiento organizacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="s-header reveal">
+    <span class="s-num">02</span>
+    <h2 class="s-title">Experiencia</h2>
+    <div class="s-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-date">Mar 2025 – Dic 2025</div>
+        <span class="badge badge-off">Finalizado</span>
+      </div>
+      <div class="tl-right">
+        <h3>Asistente de Producción</h3>
+        <div class="tl-company">Empresa familiar · Producción de Eventos y Espectáculos</div>
+        <p class="tl-desc">
+          Apoyo integral en la organización y ejecución de eventos de entretenimiento —
+          recitales y espectáculos en vivo. Coordinación de tareas operativas antes, durante
+          y después de cada evento. Colaboración directa con el equipo de producción,
+          resolución de imprevistos en tiempo real y manejo de materiales y logística en campo.
+          Aprendizaje del proceso completo detrás de la puesta en marcha de un evento a gran escala.
+        </p>
+        <div class="tags">
+          <span class="tag">Logística</span>
+          <span class="tag">Trabajo en equipo</span>
+          <span class="tag">Gestión operativa</span>
+          <span class="tag">Organización</span>
+          <span class="tag">Resolución bajo presión</span>
+          <span class="tag">Responsabilidad</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCACIÓN -->
+<section id="educacion">
+  <div class="s-header reveal">
+    <span class="s-num">03</span>
+    <h2 class="s-title">Educación</h2>
+    <div class="s-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-date">2020 – 2024</div>
+        <span class="badge badge-off">Graduado</span>
+      </div>
+      <div class="tl-right">
+        <h3>Bachiller en Informática</h3>
+        <div class="tl-company">Instituto San Roque · Buenos Aires</div>
+        <p class="tl-desc">
+          Título secundario con orientación en informática. Formación en fundamentos de
+          tecnología, lógica, sistemas y herramientas digitales aplicadas. Base que consolidó
+          el interés por la gestión y el análisis de datos.
+        </p>
+        <div class="tags">
+          <span class="tag">Informática</span>
+          <span class="tag">Tecnología</span>
+          <span class="tag">Sistemas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-date">2026 – Actualidad</div>
+        <span class="badge badge-on">En curso</span>
+      </div>
+      <div class="tl-right">
+        <h3>Tecnicatura en Gestión y Análisis de Datos</h3>
+        <div class="tl-company">1.° año · Universidad de Buenos Aires (UBA)</div>
+        <p class="tl-desc">
+          Formación técnica en fundamentos de bases de datos, gestión de información
+          organizacional, análisis estadístico aplicado y herramientas de visualización.
+          Orientada a la toma de decisiones basada en datos dentro de entornos empresariales.
+        </p>
+        <div class="tags">
+          <span class="tag">Análisis de datos</span>
+          <span class="tag">Bases de datos</span>
+          <span class="tag">Estadística</span>
+          <span class="tag">Gestión de información</span>
+          <span class="tag">Visualización</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-date">Jun 2026 – Ene 2027</div>
+        <span class="badge badge-on">En curso</span>
+      </div>
+      <div class="tl-right">
+        <h3>Análisis de Datos</h3>
+        <div class="tl-company">Coderhouse · Certificación profesional</div>
+        <p class="tl-desc">
+          Curso intensivo orientado al análisis de datos aplicado: exploración y limpieza
+          de datasets, visualización de información, interpretación de métricas e indicadores,
+          y herramientas del ecosistema data. Enfoque práctico con proyectos reales
+          y casos de uso de la industria.
+        </p>
+        <div class="tags">
+          <span class="tag">Excel avanzado</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Visualización</span>
+          <span class="tag">Data Analysis</span>
+          <span class="tag">Dashboard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-header reveal">
+    <span class="s-num">04</span>
+    <h2 class="s-title">Habilidades</h2>
+    <div class="s-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="sk reveal">
+      <div class="sk-header">
+        <span class="sk-name">Microsoft Excel</span>
+        <span class="sk-pct">65%</span>
+      </div>
+      <div class="sk-track"><div class="sk-fill" data-w="65"></div></div>
+    </div>
+    <div class="sk reveal">
+      <div class="sk-header">
+        <span class="sk-name">Microsoft Word</span>
+        <span class="sk-pct">80%</span>
+      </div>
+      <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
+    </div>
+    <div class="sk reveal">
+      <div class="sk-header">
+        <span class="sk-name">Microsoft PowerPoint</span>
+        <span class="sk-pct">78%</span>
+      </div>
+      <div class="sk-track"><div class="sk-fill" data-w="78"></div></div>
+    </div>
+    <div class="sk reveal">
+      <div class="sk-header">
+        <span class="sk-name">Paquete Office en general</span>
+        <span class="sk-pct">75%</span>
+      </div>
+      <div class="sk-track"><div class="sk-fill" data-w="75"></div></div>
+    </div>
+    <div class="sk reveal">
+      <div class="sk-header">
+        <span class="sk-name">Análisis de Datos (en formación)</span>
+        <span class="sk-pct">35%</span>
+      </div>
+      <div class="sk-track"><div class="sk-fill" data-w="35"></div></div>
+    </div>
+    <div class="sk reveal">
+      <div class="sk-header">
+        <span class="sk-name">Organización y Gestión</span>
+        <span class="sk-pct">85%</span>
+      </div>
+      <div class="sk-track"><div class="sk-fill" data-w="85"></div></div>
+    </div>
+  </div>
+
+  <div class="soft-grid">
+    <div class="soft-item reveal">
+      <div class="soft-icon">⚡</div>
+      <div class="soft-name">Proactividad</div>
+    </div>
+    <div class="soft-item reveal">
+      <div class="soft-icon">🤝</div>
+      <div class="soft-name">Trabajo en equipo</div>
+    </div>
+    <div class="soft-item reveal">
+      <div class="soft-icon">🔄</div>
+      <div class="soft-name">Adaptabilidad</div>
+    </div>
+    <div class="soft-item reveal">
+      <div class="soft-icon">📋</div>
+      <div class="soft-name">Organización</div>
+    </div>
+  </div>
+</section>
+
+<!-- IDIOMAS -->
+<section id="idiomas">
+  <div class="s-header reveal">
+    <span class="s-num">05</span>
+    <h2 class="s-title">Idiomas</h2>
+    <div class="s-line"></div>
+  </div>
+  <div class="lang-grid">
+    <div class="lang-item reveal">
+      <div class="lang-name">Español</div>
+      <div class="lang-lvl">Nativo</div>
+      <div class="lang-desc">Idioma materno · Nivel C2</div>
+    </div>
+    <div class="lang-item reveal">
+      <div class="lang-name">Inglés</div>
+      <div class="lang-lvl">Intermedio</div>
+      <div class="lang-desc">Lectura y escritura · Nivel B1–B2</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<div class="contact-section" id="contacto">
+  <div class="contact-bg-text">BIGNONE</div>
+  <h2 class="contact-headline reveal">
+    ¿Hablamos?<br>
+    <span>Estoy disponible.</span>
+  </h2>
+  <div class="contact-links reveal">
+    <a href="mailto:tomasbignone8@gmail.com" class="c-link">
+      <span class="c-label">Email</span>
+      <span class="c-value">tomasbignone8@gmail.com</span>
+    </a>
+    <div class="c-link">
+      <span class="c-label">Ubicación</span>
+      <span class="c-value">Capital Federal, CABA</span>
+    </div>
+    <div class="c-link">
+      <span class="c-label">Disponibilidad</span>
+      <span class="c-value">Inmediata</span>
+    </div>
+  </div>
+  <div class="copyright">© 2026 Tomás Bignone &nbsp;·&nbsp; CV Interactivo</div>
+</div>
+
+<script>
+// Custom cursor
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.14;
+  ry += (my - ry) * 0.14;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .tag, .stat-card, .soft-item, .lang-item').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-expand'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-expand'));
+});
+
+// Scroll reveal + skill bars
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      entry.target.querySelectorAll('.sk-fill').forEach(f => {
+        f.style.width = f.dataset.w + '%';
+      });
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Stagger sibling reveals
+document.querySelectorAll('.cards, .skills-grid, .soft-grid, .lang-grid').forEach(parent => {
+  const children = parent.querySelectorAll('.reveal');
+  children.forEach((child, i) => {
+    child.style.transitionDelay = (i * 0.1) + 's';
+  });
+});
+</script>
+</body>
+</html>
